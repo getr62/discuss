@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  db:
+    image: postgres
+    restart: always
+    volumes:
+      - ./db_data:/var/lib/posgresql/data
+    environment:
+      POSTGRES_USER: it
+      POSTGRES_PASSWORD: celeron
+      POSTGRES_DB: discuss
+    ports:
+      - '5434:5432'
+
+volumes:
+  db_data:
