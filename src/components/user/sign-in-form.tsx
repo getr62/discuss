@@ -31,6 +31,7 @@ export default function SignInForm() {
           label='Password'
           labelPlacement='outside'
           placeholder='Password'
+          type='password'
         />
 
         {formState.errors._form ? (

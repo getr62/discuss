@@ -1,8 +1,10 @@
 import NextAuth from 'next-auth';
-import CredentialsProvider from 'next-auth/providers/credentials';
+import Credentials from 'next-auth/providers/credentials';
 import { z } from 'zod';
 import { db } from '@/db';
 import type { User } from '@prisma/client';
+import { PrismaAdapter } from '@auth/prisma-adapter';
+import { JWT } from '@auth/core/jwt';
 
 async function getUser(name: string): Promise<User | null> {
   try {
@@ -23,8 +25,9 @@ export const {
   signOut,
   signIn,
 } = NextAuth({
+  adapter: PrismaAdapter(db),
   providers: [
-    CredentialsProvider({
+    Credentials({
       name: 'Credentials',
       async authorize(credentials) {
         const parsedCredentials = z
@@ -74,6 +77,10 @@ export const {
       }
 
       return session;
+    },
+    authorized({ request, auth }) {
+      console.log('AUTH in AUTHORIZED callback: ', auth);
+      return true;
     },
   },
   pages: {

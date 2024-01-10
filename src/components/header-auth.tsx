@@ -13,15 +13,29 @@ import { Icon } from 'react-icons-kit';
 import { pacman } from 'react-icons-kit/icomoon/pacman';
 import { useSession } from 'next-auth/react';
 import * as actions from '@/actions';
+// import { useEffect, useState } from 'react';
 
 export default function HeaderAuth() {
   const session = useSession();
   console.log('session 1 from useSession in header-auth: ', session);
 
+  // const [loading, setLoading] = useState(false);
+
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     // if (loading) window.location.reload();
+  //     setLoading(false);
+  //   }, 1000);
+  //   return () => clearTimeout(timer);
+  // }, []);
+
   let authContent: React.ReactNode;
   if (session.status === 'loading') {
     authContent = null;
+    // setLoading(true);
+    console.log('session status: ', session.status);
   } else if (session.data?.user) {
+    // setLoading(false);
     console.log('session 2 from useSession in header-auth: ', session);
     authContent = (
       <Popover placement='left'>
@@ -45,12 +59,13 @@ export default function HeaderAuth() {
       </Popover>
     );
   } else {
+    // setLoading(false);
     authContent = (
       <>
+        <Button onClick={() => window.location.reload()}>Reload</Button>
         <NavbarItem>
           <Link href={'/sign-in'}>Sign In</Link>
         </NavbarItem>
-
         <NavbarItem>
           <Link href={'/sign-up'}>Sign Up</Link>
         </NavbarItem>

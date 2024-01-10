@@ -56,6 +56,7 @@ export default function SignUpForm() {
           label='Password'
           labelPlacement='outside'
           placeholder='Password'
+          type='password'
         />
 
         <Input
@@ -65,6 +66,7 @@ export default function SignUpForm() {
           label='Confirm Password'
           labelPlacement='outside'
           placeholder='Confirm Password'
+          type='password'
         />
 
         {formState.errors._form ? (

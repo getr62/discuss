@@ -5,7 +5,7 @@ import { z } from 'zod';
 import { db } from '@/db';
 import { redirect } from 'next/navigation';
 import paths from '@/lib/paths';
-import * as auth from '@/lib/auth';
+import * as auth from '../lib/auth';
 import { compare } from 'bcrypt';
 
 const signInSchema = z.object({
@@ -101,7 +101,8 @@ export async function signIn(
     }
   }
 
-  redirect(paths.home());
+  // redirect(paths.home());
+  redirect(paths.redirect());
   return {
     errors: {},
   };

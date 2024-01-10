@@ -5,6 +5,9 @@ const paths = {
   signin() {
     return '/sign-in';
   },
+  redirect() {
+    return '/redirect';
+  },
   topicShow(topicSlug: string) {
     return `/topics/${topicSlug}`;
   },
