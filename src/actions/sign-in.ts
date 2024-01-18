@@ -7,6 +7,7 @@ import { redirect } from 'next/navigation';
 import paths from '@/lib/paths';
 import * as auth from '../lib/auth';
 import { compare } from 'bcrypt';
+// import { getSessionData } from './get-session';
 
 const signInSchema = z.object({
   username: z.string().min(3),
@@ -30,7 +31,7 @@ export async function signIn(
     password: formData.get('password'),
   });
 
-  console.log('result signInSchema safeParse: ', result);
+  // console.log('result signInSchema safeParse: ', result);
 
   if (!result.success) {
     return {
@@ -62,7 +63,7 @@ export async function signIn(
     };
   }
 
-  console.log('user found in sign-in action: ', user);
+  // console.log('user found in sign-in action: ', user);
 
   let profile: Profile;
   try {
@@ -71,6 +72,9 @@ export async function signIn(
       username: result.data.username,
       password: result.data.password,
     });
+
+    // const session = await getSessionData();
+    // console.log('SESSION from call getSessionData action in sign-in actin: ', session);
 
     profile = await db.profile.upsert({
       where: {
@@ -101,8 +105,8 @@ export async function signIn(
     }
   }
 
-  // redirect(paths.home());
-  redirect(paths.redirect());
+  // redirect(paths.redirect());
+  redirect(paths.home());
   return {
     errors: {},
   };

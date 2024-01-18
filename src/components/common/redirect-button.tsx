@@ -8,7 +8,7 @@ export default function RedirectButton() {
 
   const handleClick = async () => {
     () => window.location.reload();
-    await new Promise((resolve) => setTimeout(resolve, 2500));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     router.push('/');
   };
 

@@ -11,32 +11,83 @@ import {
 } from '@nextui-org/react';
 import { Icon } from 'react-icons-kit';
 import { pacman } from 'react-icons-kit/icomoon/pacman';
-import { useSession } from 'next-auth/react';
+import { getSession, useSession } from 'next-auth/react';
 import * as actions from '@/actions';
-// import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { getSessionCookie } from '@/actions/get-cookie';
+import { getSessionData } from '@/actions/get-session';
+import type { Session } from 'next-auth';
 
 export default function HeaderAuth() {
-  const session = useSession();
-  console.log('session 1 from useSession in header-auth: ', session);
+  // const [loading, setLoading] = useState(true);
+  // const [sessionA, setSessionA] = useState<Session | null>(null);
+  // const [sessionB, setSessionB] = useState<Session | null>(null);
 
-  // const [loading, setLoading] = useState(false);
+  // const componentIsMounted = useRef(true);
+  // useEffect(() => {
+  //   console.log('useEffect for componentIsMounted run');
+  //   // each useEffect can return a cleanup function
+  //   return () => {
+  //     componentIsMounted.current = false;
+  //   };
+  // }, []);
+
+  const session = useSession();
+  console.log('session from useSession: ', session);
+
+  let userSession: Session | null;
+  const getUserSession = async () => {
+    userSession = await getSessionData();
+    console.log('getUserSession: ', userSession);
+  };
+  getUserSession();
 
   // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     // if (loading) window.location.reload();
+  //   const fetchSession = async () => {
+  //     const result = await getSession({ broadcast: false, triggerEvent: false });
+  //     console.log('SESSION A from getSession: ', result);
+  //     setSessionA(result);
+  //   };
+
+  //   if (loading) {
   //     setLoading(false);
-  //   }, 1000);
-  //   return () => clearTimeout(timer);
-  // }, []);
+  //   }
+  //   fetchSession();
+  //   console.log('getSessin A in useEffect: ', sessionA);
+  // }, [session.status]);
+
+  // useEffect(() => {
+  //   const getUserSession = async () => {
+  //     const userSession = await getSessionData();
+  //     console.log('SESSION B from getSessionData action: ', userSession);
+  //     setSessionB(userSession);
+  //   };
+
+  //   if (loading) {
+  //     setLoading(false);
+  //   }
+  //   getUserSession();
+  //   console.log('SESSION B in useEffect: ', sessionB);
+  // }, [session.status]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      console.log('timeout run');
+      if (userSession && session.status === 'unauthenticated') {
+        window.location.reload();
+      }
+    }, 500);
+    return () => clearTimeout(timer);
+    // if (userSession && session.status === 'unauthenticated') {
+    //   console.log('window.location.reload() run');
+    //   window.location.reload();
+    // }
+  });
 
   let authContent: React.ReactNode;
   if (session.status === 'loading') {
     authContent = null;
-    // setLoading(true);
-    console.log('session status: ', session.status);
   } else if (session.data?.user) {
-    // setLoading(false);
-    console.log('session 2 from useSession in header-auth: ', session);
     authContent = (
       <Popover placement='left'>
         <PopoverTrigger>
@@ -59,10 +110,9 @@ export default function HeaderAuth() {
       </Popover>
     );
   } else {
-    // setLoading(false);
     authContent = (
       <>
-        <Button onClick={() => window.location.reload()}>Reload</Button>
+        {/* <Button onClick={() => window.location.reload()}>Reload</Button> */}
         <NavbarItem>
           <Link href={'/sign-in'}>Sign In</Link>
         </NavbarItem>

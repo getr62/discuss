@@ -3,8 +3,6 @@ import Credentials from 'next-auth/providers/credentials';
 import { z } from 'zod';
 import { db } from '@/db';
 import type { User } from '@prisma/client';
-import { PrismaAdapter } from '@auth/prisma-adapter';
-import { JWT } from '@auth/core/jwt';
 
 async function getUser(name: string): Promise<User | null> {
   try {
@@ -25,7 +23,6 @@ export const {
   signOut,
   signIn,
 } = NextAuth({
-  adapter: PrismaAdapter(db),
   providers: [
     Credentials({
       name: 'Credentials',
@@ -41,7 +38,7 @@ export const {
         if (parsedCredentials.success) {
           const { username, password } = parsedCredentials.data;
           const user = await getUser(username);
-          console.log('USER in auth.ts AUTHORIZE: ', user);
+          // console.log('USER in auth.ts AUTHORIZE: ', user);
           if (!user) return null;
           return user;
         }
@@ -55,9 +52,10 @@ export const {
   },
   secret: process.env.AUTH_SECRET,
   callbacks: {
-    async jwt({ token, user }: any) {
-      console.log('USER in JWT callback: ', user);
-      console.log('TOKEN BEFORE modification in JWT callback: ', token);
+    async jwt({ token, user, trigger, session }: any) {
+      // console.log('USER in JWT callback: ', user);
+      // console.log('SESSION in JWT callback: ', session);
+      // console.log('TOKEN BEFORE modification in JWT callback: ', token);
       if (token && user) {
         token.role = user.role;
         token.id = user.id;
@@ -66,9 +64,8 @@ export const {
       return token;
     },
     async session({ session, token, user }: any) {
-      console.log('USER in SESSION callback: ', user);
-      console.log('TOKEN BEFORE modification in SESSION callback: ', token);
-      console.log('SESSION BEFORE modification in SESSION callback: ', session);
+      // console.log('USER in SESSION callback: ', user);
+      // console.log('SESSION BEFORE modification in SESSION callback: ', session);
       if (session && token) {
         session.user.id = token.id;
         session.user.role = token.role;
@@ -77,10 +74,6 @@ export const {
       }
 
       return session;
-    },
-    authorized({ request, auth }) {
-      console.log('AUTH in AUTHORIZED callback: ', auth);
-      return true;
     },
   },
   pages: {
