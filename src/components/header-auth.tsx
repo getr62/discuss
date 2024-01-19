@@ -35,12 +35,14 @@ export default function HeaderAuth() {
   const session = useSession();
   console.log('session from useSession: ', session);
 
-  let userSession: Session | null;
+  let userSession: Session | null = null;
   const getUserSession = async () => {
     userSession = await getSessionData();
     console.log('getUserSession: ', userSession);
   };
-  getUserSession();
+  if (!userSession) {
+    getUserSession();
+  }
 
   // useEffect(() => {
   //   const fetchSession = async () => {
