@@ -56,6 +56,7 @@ export default function SignUpForm() {
           label='Password'
           labelPlacement='outside'
           placeholder='Password'
+          type='password'
         />
 
         <Input
