@@ -1,11 +1,6 @@
 import Link from 'next/link';
 import { Suspense } from 'react';
-import {
-  Navbar,
-  NavbarBrand,
-  NavbarContent,
-  NavbarItem,
-} from '@nextui-org/react';
+import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from '@nextui-org/react';
 import HeaderAuth from '@/components/header-auth';
 import SearchInput from '@/components/search-input';
 import dynamic from 'next/dynamic';
@@ -22,7 +17,12 @@ export default function Header() {
           Discuss
         </Link>
       </NavbarBrand>
-      <NavbarContent justify='center'>
+      <NavbarContent>
+        <NavbarItem>
+          <Link href='/dashboard'>Dashboard</Link>
+        </NavbarItem>
+      </NavbarContent>
+      <NavbarContent>
         <NavbarItem>
           <Suspense>
             <SearchInput />

@@ -19,6 +19,7 @@ interface SignInFormState {
     password?: string[];
     _form?: string[];
   };
+  success?: boolean;
 }
 
 export async function signIn(
@@ -101,8 +102,9 @@ export async function signIn(
     }
   }
 
-  redirect(paths.home());
+  // redirect(paths.home());
   return {
     errors: {},
+    success: true,
   };
 }

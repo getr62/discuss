@@ -4,11 +4,21 @@ import { useFormState } from 'react-dom';
 import { Input } from '@nextui-org/react';
 import * as actions from '@/actions';
 import FormButton from '@/components/common/form-button';
+import { useEffect } from 'react';
 
 export default function SignInForm() {
   const [formState, action] = useFormState(actions.signIn, {
     errors: {},
+    success: false,
   });
+
+  useEffect(() => {
+    if (formState.success) {
+      // using replace so the user can't go back to the login page if they
+      // press the back button
+      window.location.replace('/');
+    }
+  }, [formState.success]);
 
   return (
     <form action={action}>
@@ -31,6 +41,7 @@ export default function SignInForm() {
           label='Password'
           labelPlacement='outside'
           placeholder='Password'
+          type='password'
         />
 
         {formState.errors._form ? (
