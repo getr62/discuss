@@ -1,1 +1,4 @@
-Working solution by calling a newly added server action get-session in header-auth using useEffect where the browser api window.location.reload is triggered, if the server action gets back the auth object.
+Working solution by implementing the getSession function from auth.js in the custom useCurrentSession hook.
+
+This solution was crafted by https://github.com/bocarw121. Please take also a look at the discussion here:
+https://github.com/nextauthjs/next-auth/issues/9504
