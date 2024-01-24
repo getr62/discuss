@@ -1,39 +1,26 @@
 'use client';
 
-import { useFormState } from 'react-dom';
-import {
-  Input,
-  Button,
-  Textarea,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-} from '@nextui-org/react';
 import * as actions from '@/actions';
 import FormButton from '@/components/common/form-button';
-import { useSession } from 'next-auth/react';
-import { User } from '@prisma/client';
+import {
+  Button,
+  Input,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  Textarea,
+} from '@nextui-org/react';
+import { useFormState } from 'react-dom';
 
 export default function TopicCreateForm() {
   const [formState, action] = useFormState(actions.createTopic, {
     errors: {},
   });
 
-  const session = useSession();
-  console.log('session user in topic-create-form: ', session.data?.user);
-
-  const sessionUser: User = session.data?.user as User;
-
   return (
     <Popover placement='left'>
       <PopoverTrigger>
-        <Button
-          // className={session.data?.user.role !== 'admin' ? 'hidden' : ''}
-          className={sessionUser.role !== 'admin' ? 'hidden' : ''}
-          color='primary'
-        >
-          Create a Topic
-        </Button>
+        <Button color='primary'>Create a Topic</Button>
       </PopoverTrigger>
       <PopoverContent>
         <form action={action}>
