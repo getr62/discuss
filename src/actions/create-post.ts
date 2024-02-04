@@ -32,10 +32,12 @@ export async function createPost(
   });
 
   if (!result.success) {
+    // console.log('error: ', result.error.flatten().fieldErrors);
     return {
       errors: result.error.flatten().fieldErrors,
     };
   }
+  console.log('result with tiptap: ', result.data.content);
 
   const session = await auth();
   console.log('session in create-post-action: ', session);

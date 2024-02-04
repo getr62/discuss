@@ -11,11 +11,8 @@ import {
 } from '@nextui-org/react';
 import * as actions from '@/actions';
 import FormButton from '@/components/common/form-button';
-import { useEditor, EditorContent } from '@tiptap/react';
-import StarterKit from '@tiptap/starter-kit';
-import { Underline } from '@tiptap/extension-underline';
-import MenuBar from '../rte/menu-bar';
-import Tiptap, { editor } from '../rte/tiptap-editor';
+import Tiptap from '../rte/tiptap-editor';
+import MantineTipTap from '../rte/mantine-tiptap';
 
 interface PostCreateFormProps {
   slug: string;
@@ -24,19 +21,6 @@ interface PostCreateFormProps {
 export default function PostCreateForm({ slug }: PostCreateFormProps) {
   const [formState, action] = useFormState(actions.createPost.bind(null, slug), {
     errors: {},
-  });
-
-  const editor = useEditor({
-    extensions: [StarterKit, Underline],
-    editorProps: {
-      attributes: {
-        class: 'bg-zinc-100 hover:bg-zinc-200 focus:outline-none rounded-xl min-h-16 p-3',
-      },
-    },
-    content: '<p>Hello World! 🌎️</p>',
-    // onUpdate({ editor }) {
-    //   console.log('editor getHtml: ', editor.getHTML());
-    // },
   });
 
   return (
@@ -61,15 +45,13 @@ export default function PostCreateForm({ slug }: PostCreateFormProps) {
               isInvalid={!!formState.errors.content}
               errorMessage={formState.errors.content?.join(', ')}
               name='content'
-              value={editor?.getHTML()}
+              value={Tiptap.toString()}
               label='Content'
               labelPlacement='outside'
               placeholder='Content'
             />
-            {/* <Tiptap /> */}
-            <MenuBar editor={editor} />
-            <EditorContent editor={editor} />
-            {/* <Tiptap /> */}
+            <Tiptap />
+            {/* <MantineTipTap /> */}
 
             {formState.errors._form ? (
               <div className='rounded p-2 bg-red-200 border border-red-400'>
