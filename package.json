@@ -18,7 +18,7 @@
     "next": "14.0.2",
     "next-auth": "^5.0.0-beta.4",
     "prisma": "^5.5.2",
-    "quill": "^2.0.0-beta.1",
+    "quill": "^2.0.0-rc.0",
     "react": "^18",
     "react-dom": "^18",
     "react-icons-kit": "^2.0.0",
