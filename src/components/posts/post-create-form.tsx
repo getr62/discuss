@@ -22,10 +22,6 @@ interface PostCreateFormProps {
 }
 
 export default function PostCreateForm({ slug }: PostCreateFormProps) {
-  const [formState, action] = useFormState(actions.createPost.bind(null, slug), {
-    errors: {},
-  });
-
   const editor = useEditor({
     extensions: [StarterKit, Underline],
     editorProps: {
@@ -37,6 +33,12 @@ export default function PostCreateForm({ slug }: PostCreateFormProps) {
     // onUpdate({ editor }) {
     //   console.log('editor getHtml: ', editor.getHTML());
     // },
+  });
+
+  const content = editor?.getHTML() as string;
+
+  const [formState, action] = useFormState(actions.createPost.bind(null, slug, content), {
+    errors: {},
   });
 
   return (
@@ -57,7 +59,7 @@ export default function PostCreateForm({ slug }: PostCreateFormProps) {
               labelPlacement='outside'
               placeholder='Title'
             />
-            <Textarea
+            {/* <Textarea
               isInvalid={!!formState.errors.content}
               errorMessage={formState.errors.content?.join(', ')}
               name='content'
@@ -65,7 +67,7 @@ export default function PostCreateForm({ slug }: PostCreateFormProps) {
               label='Content'
               labelPlacement='outside'
               placeholder='Content'
-            />
+            /> */}
             {/* <Tiptap /> */}
             <MenuBar editor={editor} />
             <EditorContent editor={editor} />
