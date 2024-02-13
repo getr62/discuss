@@ -10,7 +10,7 @@ export default async function TopicList() {
     return (
       <div key={topic.id}>
         <Link href={paths.topicShow(topic.slug)}>
-          <Chip color="warning" variant="shadow">
+          <Chip color='success' variant='shadow'>
             {topic.slug}
           </Chip>
         </Link>
@@ -18,5 +18,5 @@ export default async function TopicList() {
     );
   });
 
-  return <div className="flex flex-row flex-wrap gap-2">{renderedTopics}</div>;
+  return <div className='flex flex-row flex-wrap gap-2'>{renderedTopics}</div>;
 }

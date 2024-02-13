@@ -1,6 +1,6 @@
 import PostList from '@/components/posts/post-list';
 import TopicList from '@/components/topics/topic-list';
-import TopicPopover from '@/components/topics/topic-popover';
+import Topics from '@/components/topics/topics';
 import { fetchTopPosts } from '@/db/queries/posts';
 
 export default function Home() {
@@ -11,8 +11,8 @@ export default function Home() {
         <PostList fetchData={fetchTopPosts} />
       </div>
       <div className='border shadow py-3 px-2'>
-        <TopicPopover />
-        <h3 className='text-lg'>Topics</h3>
+        <Topics />
+        {/* <h3 className='text-lg'>Topics</h3> */}
         <TopicList />
       </div>
     </div>
