@@ -1,6 +1,4 @@
-import Link from 'next/link';
 import { Suspense } from 'react';
-import { Button, Chip } from '@nextui-org/react';
 import PostShow from '@/components/posts/post-show';
 import PostShowLoading from '@/components/posts/post-show-loading';
 import CommentList from '@/components/comments/comment-list';

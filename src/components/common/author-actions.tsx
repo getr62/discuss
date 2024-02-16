@@ -5,6 +5,8 @@ import { Button } from '@nextui-org/react';
 import * as actions from '@/actions';
 import { useSession } from 'next-auth/react';
 import React from 'react';
+import Link from 'next/link';
+import paths from '@/lib/paths';
 
 interface PostShowPageProps {
   slug: string;
@@ -24,9 +26,11 @@ export default function AuthorActions({ slug, postId, user }: PostShowPageProps)
   } else if (session.data?.user?.name === user) {
     authorContent = (
       <div className='flex ml-auto space-x-2'>
-        <Button color='success' variant='bordered'>
-          Edit
-        </Button>
+        <Link href={paths.postEdit(slug, postId)}>
+          <Button color='success' variant='bordered'>
+            Edit
+          </Button>
+        </Link>
         <form action={deletePostAction}>
           <Button type='submit' color='danger' variant='flat' isLoading={pending}>
             Delete
