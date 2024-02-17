@@ -17,12 +17,9 @@ interface PostEditFormProps {
 }
 
 export default function PostEditForm({ postWithData, topics }: PostEditFormProps) {
-  const [formState, action] = useFormState(
-    actions.editPost.bind(null, postWithData.topic.slug),
-    {
-      errors: {},
-    }
-  );
+  const [formState, action] = useFormState(actions.editPost, {
+    errors: {},
+  });
 
   return (
     <>
@@ -52,6 +49,8 @@ export default function PostEditForm({ postWithData, topics }: PostEditFormProps
           />
 
           <Select
+            isInvalid={!!formState.errors.topic}
+            errorMessage={formState.errors.topic?.join(', ')}
             name='topic'
             label='Change the topic'
             labelPlacement='outside'

@@ -26,7 +26,6 @@ interface EditPostFormState {
 }
 
 export async function editPost(
-  slug: string,
   formState: EditPostFormState,
   formData: FormData
 ): Promise<EditPostFormState> {
@@ -56,7 +55,6 @@ export async function editPost(
   }
 
   const topic = await db.topic.findFirst({
-    // where: { slug: postWithData.topic.slug },
     where: { slug: result.data.topic },
   });
 
