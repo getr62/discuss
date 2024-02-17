@@ -2,7 +2,7 @@ import type { Post } from '@prisma/client';
 import { db } from '@/db';
 
 export type PostWithData = Post & {
-  topic: { slug: string; id?: string };
+  topic: { slug: string };
   user: { name: string | null };
   _count: { comments: number };
 };
@@ -11,7 +11,7 @@ export function fetchSinglePost(id: string): Promise<PostWithData> {
   return db.post.findFirstOrThrow({
     where: { id },
     include: {
-      topic: { select: { slug: true, id: true } },
+      topic: { select: { slug: true } },
       user: { select: { name: true } },
       _count: { select: { comments: true } },
     },

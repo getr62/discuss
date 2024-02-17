@@ -20,6 +20,7 @@ interface EditPostFormState {
     id?: string[];
     title?: string[];
     content?: string[];
+    topic?: string[];
     _form?: string[];
   };
 }
