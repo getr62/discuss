@@ -11,7 +11,6 @@ import paths from '@/lib/paths';
 interface PostEditFormProps {
   postWithData: PostWithData;
   topics: {
-    id: string;
     slug: string;
   }[];
 }

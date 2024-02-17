@@ -13,12 +13,11 @@ interface PostEditPageProps {
 }
 
 export default async function PostEditPage({ params }: PostEditPageProps) {
-  const { slug, postId } = params;
+  const { postId } = params;
 
   const postWithData = await fetchSinglePost(postId);
   const topics = await db.topic.findMany({
     select: {
-      id: true,
       slug: true,
     },
   });
