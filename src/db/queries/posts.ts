@@ -7,15 +7,13 @@ export type PostWithData = Post & {
   _count: { comments: number };
 };
 
-export function fetchPostsBySearchTerm(term: string): Promise<PostWithData[]> {
-  return db.post.findMany({
+export function fetchSinglePost(id: string): Promise<PostWithData> {
+  return db.post.findFirstOrThrow({
+    where: { id },
     include: {
       topic: { select: { slug: true } },
       user: { select: { name: true } },
       _count: { select: { comments: true } },
-    },
-    where: {
-      OR: [{ title: { contains: term } }, { content: { contains: term } }],
     },
   });
 }
@@ -27,6 +25,19 @@ export function fetchPostsByTopicSlug(slug: string): Promise<PostWithData[]> {
       topic: { select: { slug: true } },
       user: { select: { name: true } },
       _count: { select: { comments: true } },
+    },
+  });
+}
+
+export function fetchPostsBySearchTerm(term: string): Promise<PostWithData[]> {
+  return db.post.findMany({
+    include: {
+      topic: { select: { slug: true } },
+      user: { select: { name: true } },
+      _count: { select: { comments: true } },
+    },
+    where: {
+      OR: [{ title: { contains: term } }, { content: { contains: term } }],
     },
   });
 }
