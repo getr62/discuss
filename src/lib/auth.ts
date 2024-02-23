@@ -38,7 +38,7 @@ export const {
         if (parsedCredentials.success) {
           const { username, password } = parsedCredentials.data;
           const user = await getUser(username);
-          console.log('USER in auth.ts AUTHORIZE: ', user);
+          // console.log('USER in auth.ts AUTHORIZE: ', user);
           if (!user) return null;
           return user;
         }
@@ -53,24 +53,24 @@ export const {
   secret: process.env.AUTH_SECRET,
   callbacks: {
     async jwt({ token, user }: any) {
-      console.log('USER in JWT callback: ', user);
-      console.log('TOKEN BEFORE modification in JWT callback: ', token);
+      // console.log('USER in JWT callback: ', user);
+      // console.log('TOKEN BEFORE modification in JWT callback: ', token);
       if (token && user) {
         token.role = user.role;
         token.id = user.id;
       }
-      console.log('TOKEN AFTER modification in JWT callback: ', token);
+      // console.log('TOKEN AFTER modification in JWT callback: ', token);
       return token;
     },
     async session({ session, token, user }: any) {
-      console.log('USER in SESSION callback: ', user);
-      console.log('TOKEN BEFORE modification in SESSION callback: ', token);
-      console.log('SESSION BEFORE modification in SESSION callback: ', session);
+      // console.log('USER in SESSION callback: ', user);
+      // console.log('TOKEN BEFORE modification in SESSION callback: ', token);
+      // console.log('SESSION BEFORE modification in SESSION callback: ', session);
       if (session && token) {
         session.user.id = token.id;
         session.user.role = token.role;
 
-        console.log('SESSION AFTER modification in SESSION callback: ', session);
+        // console.log('SESSION AFTER modification in SESSION callback: ', session);
       }
 
       return session;

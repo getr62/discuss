@@ -16,13 +16,13 @@ import * as actions from '@/actions';
 
 export default function HeaderAuth() {
   const session = useSession();
-  console.log('session 1 from useSession in header-auth: ', session);
+  // console.log('session 1 from useSession in header-auth: ', session);
 
   let authContent: React.ReactNode;
   if (session.status === 'loading') {
     authContent = null;
   } else if (session.data?.user) {
-    console.log('session 2 from useSession in header-auth: ', session);
+    // console.log('session 2 from useSession in header-auth: ', session);
     authContent = (
       <Popover placement='left'>
         <PopoverTrigger>

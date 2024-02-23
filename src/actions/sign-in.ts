@@ -31,7 +31,7 @@ export async function signIn(
     password: formData.get('password'),
   });
 
-  console.log('result signInSchema safeParse: ', result);
+  // console.log('result signInSchema safeParse: ', result);
 
   if (!result.success) {
     return {
@@ -63,7 +63,7 @@ export async function signIn(
     };
   }
 
-  console.log('user found in sign-in action: ', user);
+  // console.log('user found in sign-in action: ', user);
 
   let profile: Profile;
   try {
