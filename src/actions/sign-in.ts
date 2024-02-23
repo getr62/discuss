@@ -87,7 +87,7 @@ export async function signIn(
     });
   } catch (err: unknown) {
     if (err instanceof Error) {
-      console.log('error in auth.signIn action: ', err);
+      // console.log('error in auth.signIn action: ', err);
       return {
         errors: {
           _form: [err.message],

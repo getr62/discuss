@@ -14,6 +14,9 @@ const paths = {
   postShow(topicSlug: string, postId: string) {
     return `/topics/${topicSlug}/posts/${postId}`;
   },
+  postEdit(topicSlug: string, postId: string) {
+    return `/topics/${topicSlug}/posts/${postId}/edit`;
+  },
 };
 
 export default paths;
