@@ -4,6 +4,7 @@ import paths from '@/lib/paths';
 import { Button } from '@nextui-org/react';
 import Link from 'next/link';
 import AuthorActions from '../common/author-actions';
+import EditorView from '../rte/editor-view';
 
 interface PostShowProps {
   slug: string;
@@ -36,7 +37,8 @@ export default async function PostShow({ slug, postId }: PostShowProps) {
       </div>
       <div className='m-4'>
         <h1 className='text-2xl font-bold my-2'>{post.title}</h1>
-        <p className='p-4 border rounded'>{post.content}</p>
+        {/* <p className='p-4 border rounded'>{post.content}</p> */}
+        <EditorView content={post.content} />
         <div hidden>{post.userId}</div>
       </div>
     </>
