@@ -4,7 +4,6 @@ import { useFormState } from 'react-dom';
 import {
   Input,
   Button,
-  Textarea,
   Popover,
   PopoverTrigger,
   PopoverContent,
@@ -15,7 +14,7 @@ import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import { Underline } from '@tiptap/extension-underline';
 import MenuBar from '../rte/menu-bar';
-import Tiptap, { editor } from '../rte/tiptap-editor';
+import TiptapEditor from '../rte/tiptap-editor';
 
 interface PostCreateFormProps {
   slug: string;

@@ -7,7 +7,7 @@ import MenuBar from './menu-bar';
 
 export let editor: Editor | null;
 
-const Tiptap = () => {
+export default function TiptapEditor() {
   editor = useEditor({
     extensions: [StarterKit, Underline],
     editorProps: {
@@ -15,7 +15,7 @@ const Tiptap = () => {
         class: 'bg-zinc-100 hover:bg-zinc-200 focus:outline-none rounded-xl min-h-16 p-3',
       },
     },
-    content: '<p>Hello World! 🌎️</p>',
+    // content: '<p>Hello World! 🌎️</p>',
     onUpdate({ editor }) {
       console.log('editor getHtml: ', editor.getHTML());
     },
@@ -23,10 +23,8 @@ const Tiptap = () => {
 
   return (
     <div>
-      {/* <MenuBar editor={editor} /> */}
+      <MenuBar editor={editor} />
       <EditorContent editor={editor} />
     </div>
   );
-};
-
-export default Tiptap;
+}

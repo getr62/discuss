@@ -10,11 +10,6 @@ import { PostWithData } from '@/db/queries/posts';
 import paths from '@/lib/paths';
 import TiptapEditor, { editor } from '@/components/rte/tiptap-editor';
 import MenuBar from '../rte/menu-bar';
-import { useEditor, EditorContent } from '@tiptap/react';
-import StarterKit from '@tiptap/starter-kit';
-// import { BulletList } from '@tiptap/extension-bullet-list';
-// import { ListItem } from '@tiptap/extension-list-item';
-import { Underline } from '@tiptap/extension-underline';
 
 interface PostEditFormProps {
   postWithData: PostWithData;
@@ -23,38 +18,9 @@ interface PostEditFormProps {
   }[];
 }
 
-// const CustomListItem = ListItem.extend({
-//   content: 'text*',
-// });
-
 export default function PostEditForm({ postWithData, topics }: PostEditFormProps) {
-  const editor = useEditor({
-    extensions: [
-      StarterKit,
-      Underline,
-      // BulletList.configure({
-      //   HTMLAttributes: {
-      //     class: 'ml-4',
-      //   },
-      //   keepAttributes: false,
-      // }),
-      // ListItem.configure({
-      //   HTMLAttributes: {
-      //     class: '[&>p]:inline-block',
-      //   },
-      // }),
-      // CustomListItem,
-    ],
-    editorProps: {
-      attributes: {
-        class: 'bg-zinc-100 hover:bg-zinc-200 focus:outline-none rounded-xl min-h-16 p-3',
-      },
-    },
-    // content: '',
-  });
-
   useEffect(() => {
-    // console.log('useEffect PostEditForm setContent in editor: ', postWithData.content);
+    console.log('useEffect PostEditForm setContent in editor: ', postWithData.content);
     editor?.commands.setContent(postWithData.content);
   }, [editor, postWithData.content]);
 
@@ -91,9 +57,8 @@ export default function PostEditForm({ postWithData, topics }: PostEditFormProps
             placeholder='Content'
             defaultValue={postWithData.content}
           />
-          <MenuBar editor={editor} />
-          <EditorContent editor={editor} />
-          {/* <TiptapEditor /> */}
+          {/* <MenuBar editor={editor} /> */}
+          <TiptapEditor />
 
           <Select
             isInvalid={!!formState.errors.topic}

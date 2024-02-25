@@ -26,17 +26,18 @@ interface EditPostFormState {
 }
 
 export async function editPost(
+  content: string,
   formState: EditPostFormState,
   formData: FormData
 ): Promise<EditPostFormState> {
   const result = editPostSchema.safeParse({
     id: formData.get('id'),
     title: formData.get('title'),
-    content: formData.get('content'),
+    content,
     topic: formData.get('topic'),
   });
 
-  //   console.log('formData result: ', formData);
+  // console.log('forsmData result: ', formData);
 
   if (!result.success) {
     console.log('error result', result.error);
