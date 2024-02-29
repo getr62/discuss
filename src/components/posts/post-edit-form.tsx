@@ -8,13 +8,12 @@ import * as actions from '@/actions';
 import FormButton from '@/components/common/form-button';
 import { PostWithData } from '@/db/queries/posts';
 import paths from '@/lib/paths';
+
 import TiptapEditor, { editor } from '@/components/rte/tiptap-editor';
 import MenuBar from '../rte/menu-bar';
 import { useEditor, EditorContent } from '@tiptap/react';
-import StarterKit from '@tiptap/starter-kit';
-// import { BulletList } from '@tiptap/extension-bullet-list';
-// import { ListItem } from '@tiptap/extension-list-item';
-import { Underline } from '@tiptap/extension-underline';
+
+import { tiptapExtensions } from '../rte/utils';
 
 interface PostEditFormProps {
   postWithData: PostWithData;
@@ -23,28 +22,9 @@ interface PostEditFormProps {
   }[];
 }
 
-// const CustomListItem = ListItem.extend({
-//   content: 'text*',
-// });
-
 export default function PostEditForm({ postWithData, topics }: PostEditFormProps) {
   const editor = useEditor({
-    extensions: [
-      StarterKit,
-      Underline,
-      // BulletList.configure({
-      //   HTMLAttributes: {
-      //     class: 'ml-4',
-      //   },
-      //   keepAttributes: false,
-      // }),
-      // ListItem.configure({
-      //   HTMLAttributes: {
-      //     class: '[&>p]:inline-block',
-      //   },
-      // }),
-      // CustomListItem,
-    ],
+    extensions: [...tiptapExtensions],
     editorProps: {
       attributes: {
         class: 'bg-zinc-100 hover:bg-zinc-200 focus:outline-none rounded-xl min-h-16 p-3',
@@ -82,7 +62,7 @@ export default function PostEditForm({ postWithData, topics }: PostEditFormProps
             placeholder='Title'
             defaultValue={postWithData.title}
           />
-          <Textarea
+          {/* <Textarea
             isInvalid={!!formState.errors.content}
             errorMessage={formState.errors.content?.join(', ')}
             name='content'
@@ -90,7 +70,7 @@ export default function PostEditForm({ postWithData, topics }: PostEditFormProps
             labelPlacement='outside'
             placeholder='Content'
             defaultValue={postWithData.content}
-          />
+          /> */}
           <MenuBar editor={editor} />
           <EditorContent editor={editor} />
           {/* <TiptapEditor /> */}

@@ -1,9 +1,8 @@
 'use client';
 
 import { useEditor, EditorContent } from '@tiptap/react';
-import StarterKit from '@tiptap/starter-kit';
-import { Underline } from '@tiptap/extension-underline';
 import { useEffect } from 'react';
+import { tiptapExtensions } from './utils';
 
 interface EditorViewProps {
   content: string;
@@ -11,7 +10,7 @@ interface EditorViewProps {
 
 const EditorView = ({ content }: EditorViewProps) => {
   const editor = useEditor({
-    extensions: [StarterKit, Underline],
+    extensions: [...tiptapExtensions],
     editorProps: {
       attributes: {
         class: 'bg-zinc-100 hover:bg-zinc-200 focus:outline-none rounded-xl min-h-16 p-3',

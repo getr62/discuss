@@ -11,10 +11,9 @@ import {
 import * as actions from '@/actions';
 import FormButton from '@/components/common/form-button';
 import { useEditor, EditorContent } from '@tiptap/react';
-import StarterKit from '@tiptap/starter-kit';
-import { Underline } from '@tiptap/extension-underline';
 import MenuBar from '../rte/menu-bar';
 import TiptapEditor from '../rte/tiptap-editor';
+import { tiptapExtensions } from '../rte/utils';
 
 interface PostCreateFormProps {
   slug: string;
@@ -22,7 +21,7 @@ interface PostCreateFormProps {
 
 export default function PostCreateForm({ slug }: PostCreateFormProps) {
   const editor = useEditor({
-    extensions: [StarterKit, Underline],
+    extensions: [...tiptapExtensions],
     editorProps: {
       attributes: {
         class: 'bg-zinc-100 hover:bg-zinc-200 focus:outline-none rounded-xl min-h-16 p-3',
