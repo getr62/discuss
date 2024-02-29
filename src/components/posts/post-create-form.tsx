@@ -13,7 +13,7 @@ import FormButton from '@/components/common/form-button';
 import { useEditor, EditorContent } from '@tiptap/react';
 import MenuBar from '../rte/menu-bar';
 import TiptapEditor from '../rte/tiptap-editor';
-import { tiptapExtensions } from '../rte/utils';
+import { tiptapExtensions, style } from '../rte/utils';
 
 interface PostCreateFormProps {
   slug: string;
@@ -24,10 +24,10 @@ export default function PostCreateForm({ slug }: PostCreateFormProps) {
     extensions: [...tiptapExtensions],
     editorProps: {
       attributes: {
-        class: 'bg-zinc-100 hover:bg-zinc-200 focus:outline-none rounded-xl min-h-16 p-3',
+        class: style,
       },
     },
-    content: '<p>Hello World! 🌎️</p>',
+    // content: '',
     // onUpdate({ editor }) {
     //   console.log('editor getHtml: ', editor.getHTML());
     // },

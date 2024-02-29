@@ -13,7 +13,7 @@ import TiptapEditor, { editor } from '@/components/rte/tiptap-editor';
 import MenuBar from '../rte/menu-bar';
 import { useEditor, EditorContent } from '@tiptap/react';
 
-import { tiptapExtensions } from '../rte/utils';
+import { tiptapExtensions, style } from '../rte/utils';
 
 interface PostEditFormProps {
   postWithData: PostWithData;
@@ -27,7 +27,7 @@ export default function PostEditForm({ postWithData, topics }: PostEditFormProps
     extensions: [...tiptapExtensions],
     editorProps: {
       attributes: {
-        class: 'bg-zinc-100 hover:bg-zinc-200 focus:outline-none rounded-xl min-h-16 p-3',
+        class: style,
       },
     },
     // content: '',

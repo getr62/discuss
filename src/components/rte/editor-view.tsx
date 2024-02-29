@@ -2,7 +2,7 @@
 
 import { useEditor, EditorContent } from '@tiptap/react';
 import { useEffect } from 'react';
-import { tiptapExtensions } from './utils';
+import { tiptapExtensions, style } from './utils';
 
 interface EditorViewProps {
   content: string;
@@ -13,7 +13,7 @@ const EditorView = ({ content }: EditorViewProps) => {
     extensions: [...tiptapExtensions],
     editorProps: {
       attributes: {
-        class: 'bg-zinc-100 hover:bg-zinc-200 focus:outline-none rounded-xl min-h-16 p-3',
+        class: style,
       },
     },
     editable: false,

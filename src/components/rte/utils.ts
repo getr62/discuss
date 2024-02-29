@@ -16,6 +16,7 @@ import Italic from '@tiptap/extension-italic';
 import ListItem from '@tiptap/extension-list-item';
 import OrderedList from '@tiptap/extension-ordered-list';
 import Paragraph from '@tiptap/extension-paragraph';
+import Placeholder from '@tiptap/extension-placeholder';
 import Strike from '@tiptap/extension-strike';
 import Text from '@tiptap/extension-text';
 import Underline from '@tiptap/extension-underline';
@@ -48,7 +49,15 @@ export const tiptapExtensions = [
     },
   }),
   Paragraph,
+  Placeholder.configure({
+    placeholder: 'Fill in the content',
+    emptyEditorClass:
+      'cursor-text before:content-[attr(data-placeholder)] before:absolute before:top-2 before:left-2 before:text-mauve-11 before:opacity-50 before-pointer-events-none',
+  }),
   Strike,
   Text,
   Underline,
 ];
+
+export const style =
+  'bg-zinc-100 hover:bg-zinc-200 focus:outline-none rounded-xl min-h-16 p-3';
