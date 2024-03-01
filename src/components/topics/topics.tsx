@@ -8,7 +8,7 @@ import React from 'react';
 
 function Topics() {
   const session = useSession();
-  console.log('user in session (topic-popover): ', session.data?.user);
+  // console.log('user in session (topic-popover): ', session.data?.user);
 
   const sessionUser: User = session.data?.user as User;
 
