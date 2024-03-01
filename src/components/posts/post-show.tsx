@@ -27,11 +27,9 @@ export default async function PostShow({ slug, postId }: PostShowProps) {
   return (
     <>
       <div className='flex'>
-        <Link href={paths.topicShow(slug)}>
-          <Button>
-            {'< '}Back to {slug}
-          </Button>
-        </Link>
+        <Button as={Link} href={paths.topicShow(slug)}>
+          {'< '}Back to {slug}
+        </Button>
         <AuthorActions slug={slug} postId={postId} user={post.user.name} />
       </div>
       <div className='m-4'>
