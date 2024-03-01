@@ -19,6 +19,7 @@ import Paragraph from '@tiptap/extension-paragraph';
 import Placeholder from '@tiptap/extension-placeholder';
 import Strike from '@tiptap/extension-strike';
 import Text from '@tiptap/extension-text';
+import TextAlign from '@tiptap/extension-text-align';
 import Underline from '@tiptap/extension-underline';
 
 export const tiptapExtensions = [
@@ -30,7 +31,7 @@ export const tiptapExtensions = [
     HTMLAttributes: {
       class: 'ml-12 list-disc',
     },
-    keepAttributes: false,
+    keepAttributes: true,
   }),
   Code,
   CodeBlock,
@@ -47,6 +48,7 @@ export const tiptapExtensions = [
     HTMLAttributes: {
       class: 'ml-12 list-decimal',
     },
+    keepAttributes: true,
   }),
   Paragraph,
   Placeholder.configure({
@@ -56,6 +58,10 @@ export const tiptapExtensions = [
   }),
   Strike,
   Text,
+  TextAlign.configure({
+    types: ['heading', 'paragraph'],
+    // alignments: ['left', 'center', 'right', 'justify'],
+  }),
   Underline,
 ];
 

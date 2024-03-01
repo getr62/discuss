@@ -79,7 +79,7 @@ export default function MenuBar({ editor }: MenuBarProps) {
             editor.chain().focus().toggleHeading({ level: 2 }).run();
           }}
           className={`border rounded-md p-1 ${
-            editor.isActive('heading', { level: 1 }) ? 'bg-zinc-200' : ''
+            editor.isActive('heading', { level: 2 }) ? 'bg-zinc-200' : ''
           }`}
         >
           <IconHeading />
@@ -106,6 +106,52 @@ export default function MenuBar({ editor }: MenuBarProps) {
         >
           <IconListOrdered />
         </button>
+        <div>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              editor.chain().focus().setTextAlign('left').run();
+            }}
+            className={`border rounded-md p-1 ${
+              editor.isActive({ textAlign: 'left' }) ? 'bg-zinc-200' : ''
+            }`}
+          >
+            <IconAlignLeft />
+          </button>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              editor.chain().focus().setTextAlign('center').run();
+            }}
+            className={`border rounded-md p-1 ${
+              editor.isActive({ textAlign: 'center' }) ? 'bg-zinc-200' : ''
+            }`}
+          >
+            <IconAlignCenter />
+          </button>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              editor.chain().focus().setTextAlign('right').run();
+            }}
+            className={`border rounded-md p-1 ${
+              editor.isActive({ textAlign: 'right' }) ? 'bg-zinc-200' : ''
+            }`}
+          >
+            <IconAlignRight />
+          </button>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              editor.chain().focus().setTextAlign('justify').run();
+            }}
+            className={`border rounded-md p-1 ${
+              editor.isActive({ textAlign: 'justify' }) ? 'bg-zinc-200' : ''
+            }`}
+          >
+            <IconAlignJustify />
+          </button>
+        </div>
         <button
           onClick={(e) => {
             e.preventDefault();
