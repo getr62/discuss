@@ -26,11 +26,14 @@ export default function AuthorActions({ slug, postId, user }: PostShowPageProps)
   } else if (session.data?.user?.name === user) {
     authorContent = (
       <div className='flex ml-auto space-x-2'>
-        <Link href={paths.postEdit(slug, postId)}>
-          <Button color='success' variant='bordered'>
-            Edit
-          </Button>
-        </Link>
+        <Button
+          as={Link}
+          href={paths.postEdit(slug, postId)}
+          color='success'
+          variant='bordered'
+        >
+          Edit
+        </Button>
         <form action={deletePostAction}>
           <Button type='submit' color='danger' variant='flat' isLoading={pending}>
             Delete
