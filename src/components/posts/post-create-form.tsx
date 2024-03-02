@@ -1,16 +1,11 @@
 'use client';
 
 import { useFormState } from 'react-dom';
-import {
-  Input,
-  Button,
-  Textarea,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-} from '@nextui-org/react';
+import { Input, Button, Textarea } from '@nextui-org/react';
 import * as actions from '@/actions';
 import FormButton from '@/components/common/form-button';
+import Link from 'next/link';
+import paths from '@/lib/paths';
 
 interface PostCreateFormProps {
   slug: string;
@@ -49,7 +44,15 @@ export default function PostCreateForm({ slug }: PostCreateFormProps) {
           </div>
         ) : null}
 
-        <FormButton>Create Post</FormButton>
+        <div className='flex space-x-20'>
+          <p className='text-xs text-gray-400'>Topic: {slug}</p>
+          <div className='flex justify-end mr-8 space-x-2'>
+            <Button as={Link} href={paths.topicShow(slug)} className='ml-auto'>
+              Cancel
+            </Button>
+            <FormButton>Save Post</FormButton>
+          </div>
+        </div>
       </div>
     </form>
   );
