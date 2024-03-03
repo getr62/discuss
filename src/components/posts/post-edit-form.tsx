@@ -98,9 +98,12 @@ export default function PostEditForm({ postWithData, topics }: PostEditFormProps
           ) : null}
         </div>
         <div className='flex justify-end mr-8 space-x-2'>
-          <Link href={paths.postShow(postWithData.topic.slug, postWithData.id)}>
-            <Button>Cancel</Button>
-          </Link>
+          <Button
+            as={Link}
+            href={paths.postShow(postWithData.topic.slug, postWithData.id)}
+          >
+            Cancel
+          </Button>
           <FormButton>Save</FormButton>
         </div>
       </form>
