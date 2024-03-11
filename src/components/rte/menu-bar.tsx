@@ -170,6 +170,8 @@ export default function MenuBar({ editor }: MenuBarProps) {
             e.preventDefault();
             editor.chain().focus().undo().run();
           }}
+          disabled={!editor.can().undo()}
+          className={`border rounded-md p-1 ${editor.can().undo() ? 'bg-zinc-200' : ''}`}
         >
           <IconUndo />
         </button>
@@ -178,6 +180,8 @@ export default function MenuBar({ editor }: MenuBarProps) {
             e.preventDefault();
             editor.chain().focus().redo().run();
           }}
+          disabled={!editor.can().redo()}
+          className={`border rounded-md p-1 ${editor.can().redo() ? 'bg-zinc-200' : ''}`}
         >
           <IconRedo />
         </button>

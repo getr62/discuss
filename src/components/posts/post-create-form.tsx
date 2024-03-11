@@ -1,15 +1,14 @@
 'use client';
 
-import Link from 'next/link';
-import { useFormState } from 'react-dom';
-import { useEditor, EditorContent } from '@tiptap/react';
-import { Input, Button, Textarea } from '@nextui-org/react';
 import * as actions from '@/actions';
 import FormButton from '@/components/common/form-button';
-import MenuBar from '../rte/menu-bar';
-import TiptapEditor from '../rte/tiptap-editor';
-import { tiptapExtensions, style } from '../rte/utils';
 import paths from '@/lib/paths';
+import { Button, Input } from '@nextui-org/react';
+import { EditorContent, useEditor } from '@tiptap/react';
+import Link from 'next/link';
+import { useFormState } from 'react-dom';
+import MenuBar from '../rte/menu-bar';
+import { style, tiptapExtensions } from '../rte/utils';
 
 interface PostCreateFormProps {
   slug: string;
@@ -48,19 +47,9 @@ export default function PostCreateForm({ slug }: PostCreateFormProps) {
           labelPlacement='outside'
           placeholder='Title'
         />
-        {/* <Textarea
-              isInvalid={!!formState.errors.content}
-              errorMessage={formState.errors.content?.join(', ')}
-              name='content'
-              value={editor?.getHTML()}
-              label='Content'
-              labelPlacement='outside'
-              placeholder='Content'
-            /> */}
-        {/* <Tiptap /> */}
+
         <MenuBar editor={editor} />
         <EditorContent editor={editor} />
-        {/* <Tiptap /> */}
 
         {formState.errors._form ? (
           <div className='rounded p-2 bg-red-200 border border-red-400'>

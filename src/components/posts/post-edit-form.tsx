@@ -1,19 +1,16 @@
 'use client';
 
-import Link from 'next/link';
-import { useEffect } from 'react';
-import { useFormState } from 'react-dom';
-import { Input, Button, Textarea, Select, SelectItem } from '@nextui-org/react';
 import * as actions from '@/actions';
 import FormButton from '@/components/common/form-button';
 import { PostWithData } from '@/db/queries/posts';
 import paths from '@/lib/paths';
-
-import TiptapEditor, { editor } from '@/components/rte/tiptap-editor';
+import { Button, Input, Select, SelectItem } from '@nextui-org/react';
+import Link from 'next/link';
+import { useEffect } from 'react';
+import { useFormState } from 'react-dom';
+import { EditorContent, useEditor } from '@tiptap/react';
 import MenuBar from '../rte/menu-bar';
-import { useEditor, EditorContent } from '@tiptap/react';
-
-import { tiptapExtensions, style } from '../rte/utils';
+import { style, tiptapExtensions } from '../rte/utils';
 
 interface PostEditFormProps {
   postWithData: PostWithData;
@@ -34,7 +31,6 @@ export default function PostEditForm({ postWithData, topics }: PostEditFormProps
   });
 
   useEffect(() => {
-    // console.log('useEffect PostEditForm setContent in editor: ', postWithData.content);
     editor?.commands.setContent(postWithData.content);
   }, [editor, postWithData.content]);
 
@@ -62,15 +58,7 @@ export default function PostEditForm({ postWithData, topics }: PostEditFormProps
             placeholder='Title'
             defaultValue={postWithData.title}
           />
-          {/* <Textarea
-            isInvalid={!!formState.errors.content}
-            errorMessage={formState.errors.content?.join(', ')}
-            name='content'
-            label='Content'
-            labelPlacement='outside'
-            placeholder='Content'
-            defaultValue={postWithData.content}
-          /> */}
+
           <MenuBar editor={editor} />
           <EditorContent editor={editor} />
           {/* <TiptapEditor /> */}
